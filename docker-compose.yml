@@ -8,7 +8,6 @@ services:
       - "8090:8090"
     depends_on:
       - postgresqldb
-      - kafka
       - redis
     networks:
       - network

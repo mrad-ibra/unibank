@@ -1,0 +1,39 @@
+version: '4.30.0'
+services:
+  app:
+    container_name: unitech
+    image: unitech
+    build: ./
+    ports:
+      - "8090:8090"
+    depends_on:
+      - postgresqldb
+      - kafka
+      - redis
+    networks:
+      - network
+
+  postgresqldb:
+    container_name: postgresqldb
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=200116
+      - POSTGRES_DB=unitech
+    networks:
+      - network
+
+
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - network
+
+networks:
+  network:
+
